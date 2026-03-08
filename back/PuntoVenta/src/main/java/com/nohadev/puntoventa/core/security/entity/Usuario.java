@@ -1,4 +1,4 @@
-package com.nohadev.puntoventa.core.config;
+package com.nohadev.puntoventa.core.security.entity;
 
 import com.nohadev.puntoventa.inventario.entity.MovimientosInventario;
 import com.nohadev.puntoventa.ventas.entity.Venta;
