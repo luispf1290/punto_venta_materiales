@@ -4,8 +4,6 @@ package com.nohadev.puntoventa.core.security.service;
 import com.nohadev.puntoventa.core.security.entity.Usuario;
 import com.nohadev.puntoventa.core.security.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
