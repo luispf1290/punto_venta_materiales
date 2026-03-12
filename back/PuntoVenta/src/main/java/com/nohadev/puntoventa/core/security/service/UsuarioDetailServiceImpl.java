@@ -3,34 +3,39 @@ package com.nohadev.puntoventa.core.security.service;
 
 import com.nohadev.puntoventa.core.security.entity.Usuario;
 import com.nohadev.puntoventa.core.security.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class UsuarioDetailServiceImpl implements UserDetailsService {
-    private final UsuarioRepository usuarioRepository;
+import java.util.List;
 
-    @Autowired
-    public UsuarioDetailServiceImpl(UsuarioRepository usuarioRepository){
-        this.usuarioRepository = usuarioRepository;
-    }
+@Service
+@RequiredArgsConstructor
+public class UsuarioDetailServiceImpl implements UserDetailsService {
+
+    private final UsuarioRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-        String[] authorities = usuario.getUsuarioRoles().stream()
-                .map(usuarioRol -> usuarioRol.getRol().getNombre())
-                .toArray(String[]::new);
+        List<SimpleGrantedAuthority> authorities =
+                usuario.getUsuarioRoles()
+                        .stream()
+                        .map(r -> new SimpleGrantedAuthority(
+                                r.getRol().getNombre()))
+                        .toList();
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(usuario.getUsername())
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(usuario.getUsername())
                 .password(usuario.getPassword())
-                .roles(authorities)
+                .authorities(authorities)
                 .build();
     }
 }
