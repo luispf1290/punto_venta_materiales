@@ -2,6 +2,7 @@ package com.nohadev.puntoventa.core.security.service;
 
 import com.nohadev.puntoventa.core.security.dto.AuthenticationRequest;
 import com.nohadev.puntoventa.core.security.dto.AuthenticationResponse;
+import com.nohadev.puntoventa.core.security.entity.RefreshToken;
 import com.nohadev.puntoventa.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +17,7 @@ public class AuthServiceImpl implements AuthService{
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final RefreshTokenService refreshTokenService;
 
     @Override
     public AuthenticationResponse Login(AuthenticationRequest request) {
@@ -32,6 +34,9 @@ public class AuthServiceImpl implements AuthService{
 
         String token = jwtUtil.generateToken(userDetails.getUsername());
 
-        return new AuthenticationResponse(token);
+        RefreshToken refreshToken = refreshTokenService
+                .createRefreshToken(userDetails.getUsername());
+
+        return new AuthenticationResponse(token, refreshToken.getToken());
     }
 }
