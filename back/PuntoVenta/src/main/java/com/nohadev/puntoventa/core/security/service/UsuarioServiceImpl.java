@@ -9,6 +9,7 @@ import com.nohadev.puntoventa.core.security.repository.RolRepository;
 import com.nohadev.puntoventa.core.security.repository.UsuarioRepository;
 import com.nohadev.puntoventa.core.security.repository.UsuarioRolRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,13 +22,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final RolRepository rolRepository;
     private final UsuarioRolRepository usuarioRolRepository;
     private final UsuarioMapper usuarioMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UsuarioResponseDTO crearUsuario(UsuarioRequestDTO usuarioRequestDTO) {
 
         Usuario usuario = new Usuario();
         usuario.setUsername(usuarioRequestDTO.getUsername());
-        usuario.setPassword(usuarioRequestDTO.getPassword());
+        usuario.setPassword(passwordEncoder.encode(usuarioRequestDTO.getPassword()));
         usuario.setNombre(usuarioRequestDTO.getNombre());
 
         usuarioRepository.save(usuario);
