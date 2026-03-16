@@ -1,66 +1,34 @@
-#HELP.md
-#.gradle
-#build/
-#!gradle/wrapper/gradle-wrapper.jar
-#!**/src/main/**/build/
-#!**/src/test/**/build/
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### STS ###
-#.apt_generated
-#.classpath
-#.factorypath
-#.project
-#.settings
-#.springBeans
-#.sts4-cache
-#bin/
-#!**/src/main/**/bin/
-#!**/src/test/**/bin/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-#.idea
-#*.iws
-#*.iml
-#*.ipr
-#out/
-#!**/src/main/**/out/
-#!**/src/test/**/out/
-
-### NetBeans ###
-#/nbproject/private/
-#/nbbuild/
-#/dist/
-#/nbdist/
-#/.nb-gradle/
-
-### VS Code ###
-#.vscode/
-
-*
-
-# Ignorar todo por defecto
-*
-
-# Permitir solo lo esencial del proyecto inicial
-!src/
-!build.gradle
-!settings.gradle
-!gradlew
-!gradlew.bat
-!.gitignore
-!README.md
-
-# Ignorar directorios generados
-build/
-.gradle/
-
-# Ignorar configuraciones de IDE
-.idea/
+.idea
+*.iws
 *.iml
 *.ipr
-*.iws
-.vscode/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
-# Ignorar archivos del sistema
-.DS_Store
-Thumbs.db
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
