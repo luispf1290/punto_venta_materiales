@@ -2,7 +2,7 @@ package com.nohadev.puntoventa.ventas.entity;
 
 import com.nohadev.puntoventa.catalogo.entity.Cliente;
 import com.nohadev.puntoventa.finanzas.entity.CuentasPorCobrar;
-import com.nohadev.puntoventa.core.config.Usuario;
+import com.nohadev.puntoventa.core.security.entity.Usuario;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

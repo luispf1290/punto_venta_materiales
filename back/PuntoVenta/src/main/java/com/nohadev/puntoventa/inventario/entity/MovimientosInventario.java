@@ -1,7 +1,7 @@
 package com.nohadev.puntoventa.inventario.entity;
 
 import com.nohadev.puntoventa.catalogo.entity.Producto;
-import com.nohadev.puntoventa.core.config.Usuario;
+import com.nohadev.puntoventa.core.security.entity.Usuario;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
