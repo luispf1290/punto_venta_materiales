@@ -16,7 +16,7 @@ public class ProductoRequest {
    private Double costo_promedio;
    private Double precio_venta;
    private Double stock_minimo;
-   private Boolean activo;
    private Long categoriaId;
    private Long marca_id;
+   private Boolean activo;
 }
