@@ -17,7 +17,6 @@ public class CategoriaServiceImpl implements CategoriaService{
 
     private final CategoriaRepository categoriaRepository;
     private final CategoriaMapper categoriaMapper;
-    private final ProductoRepository productoRepository;
 
     @Override
     public CategoriaResponse createCategoria(CategoriaRequest categoriaRequest) {
@@ -46,7 +45,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 
     @Override
     public void deleteCategoria(Long id) {
-        productoRepository.deleteById(id);
+        categoriaRepository.deleteById(id);
     }
 
     @Override
