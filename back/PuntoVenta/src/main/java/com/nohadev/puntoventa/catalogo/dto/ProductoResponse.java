@@ -10,11 +10,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductoResponse {
-    private  String codigo_barras;
-    private  String sku;
+    private Long id;
+    private String codigo_barras;
+    private String sku;
     private String descripcion;
     private Double costo_promedio;
     private Double precio_venta;
     private Double stock_minimo;
     private Boolean activo;
+
+    private String  categoria;
+    private String marca;
 }
