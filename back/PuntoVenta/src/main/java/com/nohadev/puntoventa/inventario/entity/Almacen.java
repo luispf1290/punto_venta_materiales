@@ -1,12 +1,18 @@
 package com.nohadev.puntoventa.inventario.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "almacenes")
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Almacen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,47 +25,4 @@ public class Almacen {
 
     @OneToMany(mappedBy = "almacen", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MovimientosInventario> movimientosInventarios = new ArrayList<>();
-
-    public Almacen() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public List<Inventario> getInventarios() {
-        return inventarios;
-    }
-
-    public void setInventarios(List<Inventario> inventarios) {
-        this.inventarios = inventarios;
-    }
-
-    public List<MovimientosInventario> getMovimientosInventarios() {
-        return movimientosInventarios;
-    }
-
-    public void setMovimientosInventarios(List<MovimientosInventario> movimientosInventarios) {
-        this.movimientosInventarios = movimientosInventarios;
-    }
 }
