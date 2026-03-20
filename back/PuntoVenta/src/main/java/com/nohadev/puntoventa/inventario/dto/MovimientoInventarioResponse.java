@@ -7,10 +7,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-@Getter
-@Setter
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MovimientoInventarioResponse {
     private Long id;
     private TipoMovimiento tipo_movimiento;
@@ -21,7 +19,7 @@ public class MovimientoInventarioResponse {
     private BigDecimal existenciaNueva;
     private BigDecimal costo_unitario;
     private LocalDate fecha;
-    private String producto;
-    private String almacen;
-    private String usuario;
+    private String nombreProducto;
+    private String nombreAlmacen;
+    private String nombreUsuario;
 }

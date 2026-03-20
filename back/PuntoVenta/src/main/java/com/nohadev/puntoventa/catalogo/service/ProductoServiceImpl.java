@@ -44,7 +44,7 @@ public class ProductoServiceImpl  implements  ProductoService{
         Categoria categoria = categoriaRepository.findById(productoRequest.getCategoriaId())
                 .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
 
-        Marca marca = marcaRepository.findById(productoRequest.getMarca_id())
+        Marca marca = marcaRepository.findById(productoRequest.getMarcaId())
                 .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
 
         producto.setCategoria(categoria);
@@ -63,7 +63,7 @@ public class ProductoServiceImpl  implements  ProductoService{
         Categoria categoria = categoriaRepository.findById(productoRequest.getCategoriaId())
                 .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
 
-        Marca marca = marcaRepository.findById(productoRequest.getMarca_id())
+        Marca marca = marcaRepository.findById(productoRequest.getMarcaId())
                 .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
 
         producto.setCodigo_barras(productoRequest.getCodigo_barras());

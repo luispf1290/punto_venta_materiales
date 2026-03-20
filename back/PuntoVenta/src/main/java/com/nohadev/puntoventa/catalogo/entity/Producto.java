@@ -4,9 +4,7 @@ import com.nohadev.puntoventa.ventas.entity.DetalleVenta;
 import com.nohadev.puntoventa.inventario.entity.Inventario;
 import com.nohadev.puntoventa.inventario.entity.MovimientosInventario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +16,15 @@ import java.util.List;
 })
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nombre;
     @Column(unique = true, nullable = false)
     private String codigo_barras;
     @Column(unique = true)
@@ -57,8 +58,4 @@ public class Producto {
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MovimientosInventario> movimientosInventarios = new ArrayList<>();
-
-    public Producto() {
-    }
-
 }

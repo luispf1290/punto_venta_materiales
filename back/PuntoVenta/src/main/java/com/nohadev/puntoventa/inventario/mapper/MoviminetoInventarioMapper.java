@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface MoviminetoInventarioMapper {
-    @Mapping(source = "producto.nombre", target = "producto")
-    @Mapping(source = "almacen.nombre", target = "almacen")
+    @Mapping(source = "producto.nombre", target = "nombreProducto")
+    @Mapping(source = "almacen.nombre", target = "nombreAlmacen")
     MovimientoInventarioResponse toDTO(MovimientosInventario movimientoInventario);
 }
