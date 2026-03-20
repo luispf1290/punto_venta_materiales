@@ -22,6 +22,6 @@ public class VentaResponse {
     private BigDecimal total;
     private String metodo_pago;
     private String estatus;
-    private String cliente;
-    private String usuario;
+    private String nombreCliente;
+    private String nombreUsuario;
 }

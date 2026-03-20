@@ -4,10 +4,7 @@ import com.nohadev.puntoventa.catalogo.entity.Producto;
 import com.nohadev.puntoventa.core.security.entity.Usuario;
 import com.nohadev.puntoventa.shared.Enums.TipoMovimiento;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,7 +16,8 @@ indexes = {
 })
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class MovimientosInventario {
     @Id

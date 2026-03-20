@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface InventarioMapper {
-    @Mapping(target = "producto", source = "producto.nombre")
-    @Mapping(target = "almacen", source = "almacen.nombre")
+    @Mapping(target = "nombreProducto", source = "producto.nombre")
+    @Mapping(target = "nombreAlmacen", source = "almacen.nombre")
     InventarioResponse toDTO(Inventario inventario);
 }

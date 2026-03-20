@@ -19,6 +19,6 @@ public class ProductoResponse {
     private Double stock_minimo;
     private Boolean activo;
 
-    private String  categoria;
-    private String marca;
+    private String  categoriaNombre;
+    private String marcaNombre;
 }
