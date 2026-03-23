@@ -6,6 +6,7 @@ import com.nohadev.puntoventa.inventario.entity.MovimientosInventario;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +32,14 @@ public class Producto {
     private String sku;
     @Column(nullable = false)
     private String descripcion;
-    @Column(nullable = false)
-    private Double costo_promedio;
-    @Column(nullable = false)
-    private Double precio_venta;
-    @Column(nullable = false)
-    private Double stock_minimo;
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal costo_promedio;
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal precio_venta;
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal costo_unitario;
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal stock_actual;
     private Boolean activo = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
