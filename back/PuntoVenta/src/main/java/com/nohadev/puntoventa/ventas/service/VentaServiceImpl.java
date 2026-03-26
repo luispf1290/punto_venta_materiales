@@ -1,5 +1,9 @@
 package com.nohadev.puntoventa.ventas.service;
 
+import com.nohadev.puntoventa.inventario.dto.MovimientoInventarioRequest;
+import com.nohadev.puntoventa.inventario.service.MovimientoInventarioService;
+import com.nohadev.puntoventa.shared.Enums.TipoMovimiento;
+import com.nohadev.puntoventa.shared.Enums.TipoOperacion;
 import com.nohadev.puntoventa.ventas.dto.DetalleVentaDTO;
 import com.nohadev.puntoventa.ventas.dto.VentaRequest;
 import com.nohadev.puntoventa.ventas.dto.VentaResponse;
@@ -25,6 +29,7 @@ public class VentaServiceImpl implements VentaService {
     private final VentaMapper ventaMapper;
     private final FolioService folioService;
     private final FacturaService facturaService;
+    private final MovimientoInventarioService movimientoInventarioService;
 
     @Override
     public VentaResponse crearVenta(VentaRequest ventaRequest) {
@@ -58,12 +63,15 @@ public class VentaServiceImpl implements VentaService {
             detalleVenta.setImporte(d.getImporte());
 
             detalleVentaRepository.save(detalleVenta);
-
-            //TODO:Implementar metodo para descontar del stock de inventario
-            /*inventarioService.descontarInventario(
-                    d.getProductoId(),
-                    d.getCantidad()
-            );*/
+            MovimientoInventarioRequest movRequest = new MovimientoInventarioRequest();
+            movRequest.setProductoId(d.getProductoId());
+            movRequest.setCantidad(d.getCantidad());
+            movRequest.setTipo_movimiento(TipoMovimiento.SALIDA);
+            movRequest.setTipo_operacion(TipoOperacion.VENTA);
+            movRequest.setTipo_documento("Venta ID: " + ventaSave.getFolio());
+            movRequest.setCosto_unitario(d.getPrecioUnitario());
+            movRequest.setAlmacenId(d.getAlmacenId());
+            movRequest.setUsuarioId(d.getUsuarioId());
         }
 
         facturaService.crearFactura(ventaSave);
