@@ -40,6 +40,8 @@ public class Producto {
     private BigDecimal costo_unitario;
     @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal stock_actual;
+    @Column(nullable = false, precision = 19, scale = 4)
+    private BigDecimal stock_minimo;
     private Boolean activo = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
