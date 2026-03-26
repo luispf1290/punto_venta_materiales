@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface MovimientoInventarioService {
-    @Transactional
     List<MovimientoInventarioResponse> obtenerKardexProducto(Long productoId);
+    @Transactional
     void procesarMovimientoInventario(MovimientoInventarioRequest request);
 }
