@@ -21,4 +21,7 @@ public class DetalleVentaDTO {
     private BigDecimal descuento;
 
     private BigDecimal importe;
+
+    private Long almacenId;
+    private Long usuarioId;
 }
