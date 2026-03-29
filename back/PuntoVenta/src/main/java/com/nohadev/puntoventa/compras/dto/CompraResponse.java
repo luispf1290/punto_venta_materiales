@@ -20,6 +20,6 @@ public class CompraResponse {
     private BigDecimal iva;
     private BigDecimal total;
     private String estatus;
-    private String nombreProvedor;
+    private String nombreProveedor;
     private String nombreUsuario;
 }
