@@ -1,5 +1,6 @@
 package com.nohadev.puntoventa.compras.entity;
 
+import com.nohadev.puntoventa.core.security.entity.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,10 @@ public class Compra {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proveedor_id")
     private Provedor proveedor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
     private List<DetalleCompra> detalles;
