@@ -63,6 +63,7 @@ public class VentaServiceImpl implements VentaService {
             detalleVenta.setImporte(d.getImporte());
 
             detalleVentaRepository.save(detalleVenta);
+
             MovimientoInventarioRequest movRequest = new MovimientoInventarioRequest();
             movRequest.setProductoId(d.getProductoId());
             movRequest.setCantidad(d.getCantidad());
@@ -72,6 +73,8 @@ public class VentaServiceImpl implements VentaService {
             movRequest.setCosto_unitario(d.getPrecioUnitario());
             movRequest.setAlmacenId(d.getAlmacenId());
             movRequest.setUsuarioId(d.getUsuarioId());
+
+            movimientoInventarioService.procesarMovimientoInventario(movRequest);
         }
 
         facturaService.crearFactura(ventaSave);
