@@ -6,9 +6,11 @@ import com.nohadev.puntoventa.compras.dto.CompraResponse;
 import com.nohadev.puntoventa.compras.dto.DetalleCompraDTO;
 import com.nohadev.puntoventa.compras.entity.Compra;
 import com.nohadev.puntoventa.compras.entity.DetalleCompra;
+import com.nohadev.puntoventa.compras.entity.Provedor;
 import com.nohadev.puntoventa.compras.mapper.CompraMapper;
 import com.nohadev.puntoventa.compras.repository.CompraRepository;
 import com.nohadev.puntoventa.compras.repository.DetalleCompraRepository;
+import com.nohadev.puntoventa.compras.repository.ProvedorRepository;
 import com.nohadev.puntoventa.inventario.dto.MovimientoInventarioRequest;
 import com.nohadev.puntoventa.inventario.service.MovimientoInventarioService;
 import com.nohadev.puntoventa.shared.Enums.TipoMovimiento;
@@ -27,6 +29,7 @@ public class CompraServiceImpl implements CompraService {
 
     private final CompraRepository compraRepository;
     private final DetalleCompraRepository detalleCompraRepository;
+    private final ProvedorRepository provedorRepository;
     private final CompraMapper compraMapper;
     private final MovimientoInventarioService movimientoInventarioService;
 
@@ -47,11 +50,14 @@ public class CompraServiceImpl implements CompraService {
             subtotal = subtotal.add(d.getImporte());
         }
 
+        Provedor provedor = provedorRepository.findById(compraRequest.getProvedorId())
+                .orElseThrow(() -> new RuntimeException("Proveedor no encontrado"));
+
         BigDecimal iva = subtotal.multiply(new BigDecimal("0.16"));
         compra.setSubtotal(subtotal);
         compra.setIva(iva);
         compra.setTotal(subtotal.add(iva));
-        compra.setProveedor(compraRequest.getProvedorId());
+        compra.setProveedor(provedor);
 
         Compra compraSave = compraRepository.save(compra);
 
