@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class MovimientoInventarioController {
     private final MovimientoInventarioService movimientoInventarioService;
 
-    @PostMapping
-    public ResponseEntity<MovimientoInventarioResponse> registrarMovimiento(
-            @RequestBody MovimientoInventarioRequest request){
-
-        return  ResponseEntity.ok(movimientoInventarioService.registrarMovimientoInventario(request));
-    }
-
     @GetMapping("/kardex/{productoId}")
     public ResponseEntity<?> obtenerKardexProducto(@PathVariable Long productoId){
         return ResponseEntity.ok(movimientoInventarioService.obtenerKardexProducto(productoId));
