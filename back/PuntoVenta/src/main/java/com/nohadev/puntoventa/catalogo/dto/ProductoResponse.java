@@ -1,24 +1,30 @@
 package com.nohadev.puntoventa.catalogo.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor
+@Builder
 public class ProductoResponse {
     private Long id;
+    private String nombre;
     private String codigo_barras;
     private String sku;
+
     private String descripcion;
-    private Double costo_promedio;
-    private Double precio_venta;
-    private Double stock_minimo;
+    private BigDecimal costo_promedio;
+    private BigDecimal precio_venta;
+    private BigDecimal costo_unitario;
+    private BigDecimal stock_actual;
+    private BigDecimal stock_minimo;
     private Boolean activo;
 
     private String  categoriaNombre;
     private String marcaNombre;
+
+    private List<ProductoUnidadResponse> unidades;
 }
