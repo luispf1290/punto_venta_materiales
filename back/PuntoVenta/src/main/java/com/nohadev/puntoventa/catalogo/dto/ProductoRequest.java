@@ -8,13 +8,17 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 public class ProductoRequest {
-   private  String codigo_barras;
-   private  String sku;
+   private String nombre;
+   private String codigo_barras;
+   private String sku;
    private String descripcion;
    private BigDecimal costo_promedio;
    private BigDecimal precio_venta;
+   private BigDecimal costoUnitario;
    private BigDecimal stock_minimo;
    private Long categoriaId;
    private Long marcaId;
    private Boolean activo;
+
+   private List<ProductoUnidadRequest> unidades;
 }
