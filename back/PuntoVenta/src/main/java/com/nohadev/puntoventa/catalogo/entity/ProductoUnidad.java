@@ -2,20 +2,29 @@ package com.nohadev.puntoventa.catalogo.entity;
 
 import com.nohadev.puntoventa.ventas.entity.DetalleVenta;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "producto_unidades")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductoUnidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double factor_conversion;
-    private Double precio_venta;
+    private BigDecimal factor_conversion;
+    private BigDecimal precio_venta;
 
-    @OneToMany(mappedBy = "productoUnidad", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "productoUnidad", cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<DetalleVenta> detalleVentas = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,57 +34,4 @@ public class ProductoUnidad {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="unidad_id")
     private UnidadMedida unidadMedida;
-
-    public ProductoUnidad() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getFactor_conversion() {
-        return factor_conversion;
-    }
-
-    public void setFactor_conversion(Double factor_conversion) {
-        this.factor_conversion = factor_conversion;
-    }
-
-    public Double getPrecio_venta() {
-        return precio_venta;
-    }
-
-    public void setPrecio_venta(Double precio_venta) {
-        this.precio_venta = precio_venta;
-    }
-
-    public List<DetalleVenta> getDetalleVentas() {
-        return detalleVentas;
-    }
-
-    public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-        this.detalleVentas = detalleVentas;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public UnidadMedida getUnidadMedida() {
-        return unidadMedida;
-    }
-
-    public void setUnidadMedida(UnidadMedida unidadMedida) {
-        this.unidadMedida = unidadMedida;
-    }
-
-
 }
