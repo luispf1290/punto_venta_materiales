@@ -1,12 +1,20 @@
 package com.nohadev.puntoventa.catalogo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "unidade_medida")
+@Table(name = "unidad_medida")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UnidadMedida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,47 +27,4 @@ public class UnidadMedida {
 
     @OneToMany(mappedBy = "unidadMedida", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductoUnidad> productoUnidades = new ArrayList<>();
-
-    public UnidadMedida() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getClave_sat() {
-        return clave_sat;
-    }
-
-    public void setClave_sat(String clave_sat) {
-        this.clave_sat = clave_sat;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getAbreviatura() {
-        return abreviatura;
-    }
-
-    public void setAbreviatura(String abreviatura) {
-        this.abreviatura = abreviatura;
-    }
-
-    public List<ProductoUnidad> getProductoUnidades() {
-        return productoUnidades;
-    }
-
-    public void setProductoUnidades(List<ProductoUnidad> productoUnidades) {
-        this.productoUnidades = productoUnidades;
-    }
 }
