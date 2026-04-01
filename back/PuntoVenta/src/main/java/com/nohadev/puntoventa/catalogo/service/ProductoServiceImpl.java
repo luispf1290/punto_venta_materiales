@@ -2,13 +2,10 @@ package com.nohadev.puntoventa.catalogo.service;
 
 import com.nohadev.puntoventa.catalogo.dto.ProductoRequest;
 import com.nohadev.puntoventa.catalogo.dto.ProductoResponse;
-import com.nohadev.puntoventa.catalogo.entity.Categoria;
-import com.nohadev.puntoventa.catalogo.entity.Marca;
-import com.nohadev.puntoventa.catalogo.entity.Producto;
+import com.nohadev.puntoventa.catalogo.dto.ProductoUnidadRequest;
+import com.nohadev.puntoventa.catalogo.entity.*;
 import com.nohadev.puntoventa.catalogo.mapper.ProductoMapper;
-import com.nohadev.puntoventa.catalogo.repository.CategoriaRepository;
-import com.nohadev.puntoventa.catalogo.repository.MarcaRepository;
-import com.nohadev.puntoventa.catalogo.repository.ProductoRepository;
+import com.nohadev.puntoventa.catalogo.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +18,8 @@ public class ProductoServiceImpl  implements  ProductoService{
     private final ProductoRepository productoRepository;
     private final CategoriaRepository categoriaRepository;
     private final MarcaRepository marcaRepository;
+    private  final UnidadMedidaRepository unidadMedidaRepository;
+    private final ProductoUnidadRepository productoUnidadRepository;
     private final ProductoMapper productoMapper;
 
     @Override
@@ -52,6 +51,21 @@ public class ProductoServiceImpl  implements  ProductoService{
 
         Producto productoSave = productoRepository.save(producto);
 
+        if (productoRequest.getUnidades() != null) {
+            for (ProductoUnidadRequest unidadRequest : productoRequest.getUnidades()) {
+                UnidadMedida unidadMedida = unidadMedidaRepository.findById(unidadRequest.getUnidadMedidaId())
+                        .orElseThrow(() -> new RuntimeException("Unidad de medida no encontrada"));
+
+                ProductoUnidad productoUnidad = new ProductoUnidad();
+
+                productoUnidad.setProducto(productoSave);
+                productoUnidad.setUnidadMedida(unidadMedida);
+                productoUnidad.setFactor_conversion(unidadRequest.getFactorConversion());
+                productoUnidad.setPrecio_venta(unidadRequest.getPrecioVenta());
+                productoUnidadRepository.save(productoUnidad);
+            }
+        }
+
         return productoMapper.toDTO(productoSave);
     }
 
@@ -77,6 +91,20 @@ public class ProductoServiceImpl  implements  ProductoService{
         producto.setMarca(marca);
 
         Producto productoSave = productoRepository.save(producto);
+        if (productoRequest.getUnidades() != null) {
+            for (ProductoUnidadRequest unidadRequest : productoRequest.getUnidades()) {
+                UnidadMedida unidadMedida = unidadMedidaRepository.findById(unidadRequest.getUnidadMedidaId())
+                        .orElseThrow(() -> new RuntimeException("Unidad de medida no encontrada"));
+
+                ProductoUnidad productoUnidad = new ProductoUnidad();
+
+                productoUnidad.setProducto(productoSave);
+                productoUnidad.setUnidadMedida(unidadMedida);
+                productoUnidad.setFactor_conversion(unidadRequest.getFactorConversion());
+                productoUnidad.setPrecio_venta(unidadRequest.getPrecioVenta());
+                productoUnidadRepository.save(productoUnidad);
+            }
+        }
 
         return productoMapper.toDTO(productoSave);
     }
