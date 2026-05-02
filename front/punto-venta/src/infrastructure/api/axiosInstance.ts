@@ -1,3 +1,4 @@
+import { refreshService } from "@/services";
 import { TOKEN_KEY } from "@/types/jwt";
 import { getEnvVaribles } from "@/utils/getEnvVariables";
 import axios from "axios";
@@ -40,6 +41,7 @@ instance.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+      return refreshService.handleRefresh(error, originalRequest);
     }
     return Promise.reject(error);
   },

@@ -3,16 +3,16 @@ import { AuthRepositoryImpl } from "@/infrastructure/repositories/AuthRepository
 import { login } from "@/aplication/auth";
 
 import { tokenService } from "@/services/tokenService";
-import { LoginRequest, LoginResponse } from "@/domain/DTO";
+import { AuthRequest, AuthResponse } from "@/domain/DTO";
 
 
 const repo = new AuthRepositoryImpl();
 
 export const loginThunk = createAsyncThunk(
     "auth/login",
-    async ({username,password}:LoginRequest, { rejectWithValue }) => {
+    async ({username,password}:AuthRequest, { rejectWithValue }) => {
         try{
-            const user:LoginResponse = await login(username, password, repo);
+            const user:AuthResponse = await login(username, password, repo);
             tokenService.setSession(user);
             return user;
         }catch(error:any){

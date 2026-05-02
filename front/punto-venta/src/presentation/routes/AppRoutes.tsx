@@ -8,7 +8,7 @@ export const AppRoutes = () => {
     <Route
       path="/dashboard"
       element={
-        <ProtectedRoutes roles={["admin", "user"]}>
+        <ProtectedRoutes roles={["ADMIN", "ANALISTA","SUPERVISOR"]}>
           <>
           </>
         </ProtectedRoutes>

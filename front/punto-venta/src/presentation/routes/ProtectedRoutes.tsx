@@ -11,7 +11,7 @@ export const ProtectedRoutes = ({ children, roles }: ProtectedRoutesProps) => {
     const {isAuthneticated, user} = useAppSelector(state => state.auth);
 
     if(!isAuthneticated){
-        return <Navigate to="/login" replace />
+        return <Navigate to="auth/login" replace />
     }
 
     if(roles && !roles.some((role:string) => user.roles.includes(role))){

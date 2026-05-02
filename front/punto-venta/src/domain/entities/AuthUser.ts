@@ -1,13 +1,12 @@
 export interface AuthUser {
   id: number;
   username: string;
-  roles: 'ADMIN' | 'CASHIER' | 'MANAGER';
-  token: string;
+  roles: 'ADMIN' | 'ANALISTA' | 'CAJERO' | 'SUPERVISOR';
 }
 
 export interface AuthState {
-  user: AuthUser | null;
-  token: string | null;
-  refreshToken: string | null;
+  jwToken: string | null;
+  refreshToken: string;
+  usuarior: AuthUser | null;
   isAuthenticated: boolean;
 }

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/presentation/store/hooks/useApp"
 import { loginThunk } from "../Slices";
-import { LoginRequest } from "@/domain/DTO/auth.dto";
+import { AuthRequest } from "@/domain/DTO/auth.dto";
 
 
 export const useAuthStore = () => {
@@ -8,7 +8,7 @@ export const useAuthStore = () => {
     const dispatch  = useAppDispatch(); 
     const { user, error,loading } = useAppSelector((state) => state.auth);
 
-    const startLogin = (user: LoginRequest) =>{
+    const startLogin = (user: AuthRequest) =>{
         dispatch(loginThunk(user))
     }
 
