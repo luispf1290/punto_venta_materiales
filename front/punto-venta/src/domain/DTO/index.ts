@@ -1,2 +1,1 @@
-export type { LoginRequest } from './auth.dto';
-export type{ LoginResponse } from './auth.dto';
+export type { AuthRequest, AuthResponse } from './auth.dto';

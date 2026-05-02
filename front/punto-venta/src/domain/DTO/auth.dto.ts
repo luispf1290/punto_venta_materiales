@@ -1,14 +1,15 @@
-export interface LoginResponse {
-    // id: string;
-    // email: string;
-    // fullName: string;
-    // role: 'ADMIN' | 'CASHIER' | 'MANAGER';
-    jwToken: string;
-    refreshToken: string;
-  };
-
-
-export interface LoginRequest {
+export interface AuthRequest {
   username: string;
   password: string;
+}
+
+export interface AuthResponse {
+  jwToken: string | null;
+  refreshToken: string;
+  usuario: AuthDetails;
+}
+
+interface AuthDetails {
+   username: string;
+   roles: 'ADMIN' | 'ANALISTA' | 'CAJERO' | 'SUPERVISOR';
 }

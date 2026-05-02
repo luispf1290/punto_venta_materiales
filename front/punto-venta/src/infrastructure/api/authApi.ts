@@ -1,9 +1,10 @@
-import { LoginRequest, LoginResponse } from "@/domain/DTO";
+import { AuthRequest } from "@/domain/DTO";
 import { instance } from "./axiosInstance";
+import { AuthState } from "@/domain/entities/AuthUser";
 
 export const authApi = {
-    login: (data:LoginRequest) => {
-        const resp = instance.post<LoginResponse>('/auth/login', data)
+    login: (data:AuthRequest) => {
+        const resp = instance.post<AuthState>('/auth/login', data)
         return resp;
     },
 };
